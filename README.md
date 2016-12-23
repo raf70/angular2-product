@@ -1,4 +1,4 @@
-## angular2-seed
+## copy of /angular/angular2-seed
 
 A simple starter project demonstrating the basic concepts of Angular 2.
 
