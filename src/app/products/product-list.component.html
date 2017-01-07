@@ -1,0 +1,38 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        <h3> {{title}} </h3>
+    </div>
+    <div class='panel-body'>
+        <div class='table-responsive'>
+            <table class='table' *ngIf='products && products.length'>
+                <thead>
+                    <tr>
+                        <th>PN</th>
+                        <th>SN</th>
+                        <th>Desc</th>
+                        <th>MAC0</th>
+                        <th>MAC1</th>
+                        <th>IMEI0</th>
+                        <th>IMEI1</th>
+                        <th>Parent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let product of products'>
+                        <td>{{product.sn}}</td>
+                        <td>{{product.pn}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.mac0}}</td>
+                        <td>{{product.mac0}}</td>
+                        <td>{{product.mac1}}</td>
+                        <td>{{product.imei0}}</td>
+                        <td>{{product.imei1}}</td>
+                        <td>{{product.parent}}</td>
+
+                    </tr>
+                </tbody>
+                <pm-product></pm-product>
+            </table>
+        </div>
+    </div>
+</div>

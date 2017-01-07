@@ -6,5 +6,5 @@ import {Component}from '@angular/core';
 })
 export class ProductComponent {
     name: string = "WARP 5";
-    sn: string = 
+    sn: string = ""
 }
