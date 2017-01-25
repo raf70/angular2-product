@@ -1,9 +1,20 @@
-<td>{{product.sn}}</td>
-<td>{{product.pn}}</td>
-<td>{{product.desc1}}</td>
-<td>{{product.mac0}}</td>
-<td>{{product.mac1}}</td>
-<td>{{product.mac2}}</td>
-<td>{{product.imei0}}</td>
-<td>{{product.imei1}}</td>
-<td>{{product.parentId}}</td>
+<div>
+<form #form="ngForm" (submit)="submitForm(form)">
+    <div class="form-group">
+        <input id='Sn' type="text" [(ngModel)]='product.Sn' placeholder="Serial Number" name="Sn">
+        <input id='ItemNo' type="text" [(ngModel)]='product.ItemNo' placeholder="Item Number" name="ItemNo">
+        <input id='Desc1' type="text" [(ngModel)]='product.Desc1' placeholder="Description" name="Desc1">
+        <input id='Mac0' type="text" [(ngModel)]='product.Mac0' placeholder="MAC0" name="Mac0">
+        <input id='Mac1' type="text" [(ngModel)]='product.Mac1' placeholder="MAC1" name="Mac1">
+        <input id='Imei0' type="text" [(ngModel)]='product.Imei0' placeholder="IMEI0" name="Imei0" >
+        <input id='Imei1' type="text" [(ngModel)]='product.Imei1' placeholder="IMEI1" name="Imei1">
+        <!--<input id='ParentId' type="text" [(ngModel)]='ParentId' name="ParentId">-->
+        <div class="checkbox"><label><input type="checkbox" name="IsParent" [(ngModel)]='product.IsParent'> Root </label> </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+
+    </div>
+    
+</form>
+Product:{{product | json}}<br>
+Angular: {{form.value | json}}
+</div>

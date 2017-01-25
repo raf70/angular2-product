@@ -1,10 +1,10 @@
 <div class='panel panel-primary'>
     <div class='panel-heading'>
-        <h3> {{title}} </h3>
+        <h3> {{title}}</h3>
     </div>
     <div class='panel-body'>
         <div class='table-responsive'>
-            <table class='table' *ngIf='products && products.length'>
+            <table class='table' *ngIf='modules && modules.length'>
                 <thead>
                     <tr>
                         <th>PN</th>
@@ -18,16 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let product of products'>
-                        <td>{{product.sn}}</td>
-                        <td>{{product.pn}}</td>
-                        <td>{{product.desc1}}</td>
-                        <td>{{product.mac0}}</td>
-                        <td>{{product.mac1}}</td>
-                        <td>{{product.mac2}}</td>
-                        <td>{{product.imei0}}</td>
-                        <td>{{product.imei1}}</td>
-                        <td>{{product.parentId}}</td>
+                    <tr *ngFor='let m of modules'>
+                        <td>{{m.Sn}}</td>
+                        <td>{{m.ItemNo}}</td>
+                        <td>{{m.Desc1}}</td>
+                        <td>{{m.Mac0}}</td>
+                        <td>{{m.Mac1}}</td>
+                        <td>{{m.Imei0}}</td>
+                        <td>{{m.Imei1}}</td>
+                        <td>{{m.ParentId}}</td>
                     </tr>
                 </tbody>
 

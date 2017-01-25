@@ -1,21 +1,36 @@
-export class PikaModule {
-    constructor(
-        public id: number,
-        public sn: string,
-        public pn: string,
-        public desc1: string,
-        public mac0: string,
-        public mac1: string,
-        public mac2: string,
-        public uuid0: string,
-        public uuid1: string,
-        public imei0: string,
-        public imei1: string,
-        public imei2: string,
-        public imei3: string,
-        public parentSn: string,
-        public parentId: number,
-        public isParent: boolean,
-        public createDt: Date
-    ){}
+export interface IModule {
+        Id?: number,
+        Sn: string,
+        ItemNo: string,
+        Desc1: string,
+        Mac0: string,
+        Mac1: string,
+       // Mac2: string,
+        Uuid0: string,
+        Uuid1: string,
+        Imei0: string,
+        Imei1: string,
+        //imei2: string,
+        //imei3: string,
+        PrentSn: string,
+        ParentId?: number,
+        IsParent: boolean,
+        CreateDt: Date
+}
+
+export class PikaModule implements IModule{
+  constructor ( 
+     public Sn: string,
+     public ItemNo: string,
+     public Desc1: string,
+     public Mac0: string,
+     public Mac1: string,
+     public Uuid0: string,
+     public Uuid1: string,
+     public Imei0: string,
+     public Imei1: string,
+     public PrentSn: string,
+     public IsParent: boolean,
+     public CreateDt: Date
+  ) {}  
 }

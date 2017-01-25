@@ -6,13 +6,15 @@ import { RepoBrowserComponent } from './github/repo-browser/repo-browser.compone
 import { RepoListComponent } from './github/repo-list/repo-list.component';
 import { RepoDetailComponent } from './github/repo-detail/repo-detail.component';
 import { ContactComponent } from './contact/contact.component';
-import { ProductListComponent } from "./products/product-list.component";
+import { ProductListComponent } from "./productList/product-list.component";
+import { ProductComponent } from "./product/product.component";
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'products', component: ProductListComponent  },
+  { path: 'productList', component: ProductListComponent  },
+  { path: 'product', component: ProductComponent  },
   { path: 'contact', component: ContactComponent }
 ];
 
