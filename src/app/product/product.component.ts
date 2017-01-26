@@ -8,19 +8,26 @@ import {PikaModuleService} from '../pikaModule/pikaModule.service';
     templateUrl: 'product.component.html'
 })
 export class ProductComponent {
-    product = new PikaModule('','','','','','','','','','',false, new Date());
-   // products: IModule[]; 
+    title = 'My sample PIKA product';
+    moduleNames: string[] = ['chassy','module2','module3','module4'];
+    products: PikaModule[] = 
+        [
+            new PikaModule('chassis',true),
+            new PikaModule('module1',false),
+            new PikaModule('module2',false), 
+            new PikaModule('module3',false)
+            ];
 
-    constructor(private _pikaModuleSerice: PikaModuleService) {  
-        this.product.Sn 
+    constructor(private _pikaModuleSerice: PikaModuleService) {
+
     }
+    // onNotify(product: PikaModule): void {
+    //   this.product = product;
+    // }
 
     submitForm(form: NgForm){
-        
-        let modules: IModule[] = [this.product];
-        //this.products[0] = this.product;
-        console.log(modules);
-        this._pikaModuleSerice.save(modules)
+        console.log(this.products);
+        this._pikaModuleSerice.save(this.products)
             .subscribe(
                 data => console.log('success: ', data),
                 err => console.log('error: ',err)

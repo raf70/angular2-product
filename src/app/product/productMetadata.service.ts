@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import {IModule} from './pikaModule' 
+import {IModuleMetadata} from './productMetadata' 
 
 @Injectable()
 export class PikaModuleService {
@@ -14,31 +14,35 @@ export class PikaModuleService {
     private _pikaModuleUrl = 'http://localhost:3001';
     constructor(private _http: Http) {}
 
-    getAll(): Observable<IModule[]> {
-        let modules$ = this._http.get(`${this._pikaModuleUrl}/devices`,{headers: this.getHeaders()})
-        .map((response: Response) => <IModule[]> response.json().result)
-        //.do(data => console.log('getAll: ' + JSON.stringify(data)))
+    // this returns names to populate product drop down menu on Add Product page
+    getProductNames(): Observable<String[]> {
+        let modules$ = this._http.get(`${this._pikaModuleUrl}/productNames`,{headers: this.getHeaders()})
+        .map((response: Response) => <String[]> response.json().result)
         .catch(this.handleError);
         return modules$;
     }
-
-    getBySn(sn: string): Observable<IModule[]>{
-         let modules$ = this._http.get(`${this._pikaModuleUrl}/deviceBySn/${sn}`,{headers: this.getHeaders()})
-        .map((response: Response) => <IModule[]> response.json().result)
+    // returns list of modules and fields to be populated for product names
+    getProductMetadata(name: string): Observable<IModuleMetadata[]>{
+         let modules$ = this._http.get(`${this._pikaModuleUrl}/productMetadata/${name}`,{headers: this.getHeaders()})
+        .map((response: Response) => <IModuleMetadata[]> response.json().result)
         //.do(data => console.log('getBySn: ' + JSON.stringify(data)))
         .catch(this.handleError);
         return modules$;
     }
 
-    get(id: number): Observable<IModule>{
+    get(id: number): Observable<IModuleMetadata>{
          let module$ = this._http.get(`${this._pikaModuleUrl}/device/${id}`,{headers: this.getHeaders()})
-        .map((response: Response) => <IModule[]> response.json().result)
+        .map((response: Response) => <IModuleMetadata[]> response.json().result)
         //.do(data => console.log('Get: ' + JSON.stringify(data)))
         .catch(this.handleError);
         return module$;
     }
 
-    save(modules: IModule[]): Observable<number> {
+// should add addNewProduct
+// should add remove and update Product and some type of module maintenance
+ 
+ // incomplete
+    saveProduct(modules: IModuleMetadata[]): Observable<number> {
         // console.log("to post: " + JSON.stringify(modules));
         return this._http.post(`${this._pikaModuleUrl}/device`,JSON.stringify(modules),{headers: this.getHeaders()})
         .map((response: Response) => <number> response.json().result)
