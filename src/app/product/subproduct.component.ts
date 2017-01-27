@@ -1,7 +1,6 @@
 import {Component, Input, Output, EventEmitter}from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {IModule, PikaModule} from '../pikaModule/PikaModule';
-import {PikaModuleService} from '../pikaModule/pikaModule.service';
+import {IModule, PikaModule} from '../models/PikaModule';
 
 @Component ({
     selector: 'pm-subproduct',

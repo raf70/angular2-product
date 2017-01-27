@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter}from '@angular/core';
-import {IModule} from './PikaModule'
+import {IModule} from '../models/PikaModule'
 
 @Component ({
     selector: 'pm-module',

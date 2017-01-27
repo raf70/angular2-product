@@ -5,10 +5,15 @@
 <div>
 <form #form="ngForm" (submit)="submitForm(form)">
   <div class="form-group">
-     <pm-subproduct [product]='products[0]' (notify)=onNotify($event)></pm-subproduct>
-     <pm-subproduct [product]='products[1]' (notify)=onNotify($event)></pm-subproduct>
-     <pm-subproduct [product]='products[2]' (notify)=onNotify($event)></pm-subproduct>
-     <pm-subproduct [product]='products[3]' (notify)=onNotify($event)></pm-subproduct>
+    <label>Product to Add</label>
+    <select class="form-control" name="productName"  [(ngModel)]="productName" (ngModelChange)="getProductStructure($event)">
+      <option *ngFor="let pName of productNames">
+        {{pName}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+     <pm-subproduct [product]='products[0]' (notify)=onNotify($event)  *ngFor='let product of products'></pm-subproduct>
      <button class="btn btn-primary" type="submit">Save</button>
     </div>
 </form>
@@ -17,4 +22,5 @@
 </div>
 
 Products:{{products | json}}<br>
-Angular: {{form.value | json}}
+Angular: {{form.value | json}}<br>
+ProductName: {{productName | json}}

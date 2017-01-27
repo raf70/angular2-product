@@ -1,7 +1,7 @@
 import {Component, OnInit}from '@angular/core';
 import {ProductComponent} from '../product/product.component';
-import {IModule} from '../pikaModule/pikaModule';
-import {PikaModuleService} from '../pikaModule/pikaModule.service';
+import {IModule} from '../models/pikaModule';
+import {PikaModuleService} from '../services/db.service';
 
 
 @Component ({

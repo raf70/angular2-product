@@ -1,4 +1,4 @@
-export interface IModuleMetadata {
+export interface IModuleSchema {
         DisplayName: String,
         showSn: boolean,
         showItemNo: boolean,
