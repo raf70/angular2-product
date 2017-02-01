@@ -1,10 +1,11 @@
-<div class="form-group">
-    {{product.DisplayName}}
-    <input id='Sn' type="text" [(ngModel)]='product.Sn' placeholder="Serial Number" name="Sn">
-    <input id='ItemNo' type="text" [(ngModel)]='product.ItemNo' placeholder="Item Number" name="ItemNo">
-    <input id='Desc1' type="text" [(ngModel)]='product.Desc1' placeholder="Description" name="Desc1" *ngIf="false">
-    <input id='Mac0' type="text" [(ngModel)]='product.Mac0' placeholder="MAC0" name="Mac0" *ngIf="false">
-    <input id='Mac1' type="text" [(ngModel)]='product.Mac1' placeholder="MAC1" name="Mac1" *ngIf="true">
-    <input id='Imei0' type="text" [(ngModel)]='product.Imei0' placeholder="IMEI0" name="Imei0" *ngIf="false">
-    <input id='Imei1' type="text" [(ngModel)]='product.Imei1' placeholder="IMEI1" name="Imei1" *ngIf="false">
+<div class="form-group has-error">
+    {{product.ItemNo}}
+    {{product.Desc1}}  
+    <input #sn="ngModel" id='Sn' requried type="text" class="form-control" [(ngModel)]='product.Sn' placeholder="Serial Number" name="Sn">
+    <input #mac0="ngModel" id='Mac0' type="text" [(ngModel)]='product.Mac0' placeholder="MAC 0" name="Mac0" *ngIf="product.ShowMac0">
+    <input #mac1="ngModel" id='Mac1' type="text" [(ngModel)]='product.Mac1' placeholder="MAC 1" name="Mac1" *ngIf="product.ShowMac0">
+    <input #imei0="ngModel" id='Imei0' type="text" [(ngModel)]='product.Imei0' placeholder="IMEI 0" name="Imei0" *ngIf="product.ShowImei0">
+    <input #imei1="ngModel" id='Imei1' type="text" [(ngModel)]='product.Imei1' placeholder="IMEI 1" name="Imei1" *ngIf="product.ShowImei1">
+    <input #uuid0="ngModel" id='Uuid0' type="text" [(ngModel)]='product.Uuid0' placeholder="UUID 0" name="Uuid0" *ngIf="product.ShowUuid0">
+    <input #uuid1="ngModel" id='Uuid1' type="text" [(ngModel)]='product.Uuid1' placeholder="UUID 1" name="Uuid1" *ngIf="product.ShowUuid1">
 </div>

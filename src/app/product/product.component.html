@@ -3,24 +3,25 @@
         <h3> {{title}}</h3>
     </div>
 <div>
-<form #form="ngForm" (submit)="submitForm(form)">
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
   <div class="form-group">
     <label>Product to Add</label>
     <select class="form-control" name="productName"  [(ngModel)]="productName" (ngModelChange)="getProductStructure($event)">
-      <option *ngFor="let pName of productNames">
-        {{pName}}
+      <option value="default">Select device...</option>
+      <option *ngFor="let pName of productNames" [ngValue]="pName">
+        {{pName.ProductName}}
       </option>
     </select>
   </div>
   <div class="form-group">
-     <pm-subproduct [product]='products[0]' (notify)=onNotify($event)  *ngFor='let product of products'></pm-subproduct>
-     <button class="btn btn-primary" type="submit">Save</button>
+     <pm-subproduct [product]='product' (notify)=onNotify($event)  *ngFor='let product of productRows'></pm-subproduct>
+     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
     </div>
 </form>
 
 </div>
 </div>
 
-Products:{{products | json}}<br>
-Angular: {{form.value | json}}<br>
+
+ModuleList: {{productRows | json}}<BR>
 ProductName: {{productName | json}}

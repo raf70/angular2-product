@@ -1,10 +1,12 @@
 <tr>
-<td>{{Sn}}</td>
-<td>{{ItemNo}}</td>
-<td>{{Desc1}}</td>
-<td>{{Mac0}}</td>
-<td>{{Mac1}}</td>
-<td>{{Imei0}}</td>
-<td>{{Imei1}}</td>
-<td>{{ParentId}}</td>
+<td *ngIf={{ShowItemNo}}>{{Sn}}>{{ItemNo}}</td>
+<td *ngIf={{ShowSn}}>{{Sn}}</td>
+<!--<td *ngIf={{De}}>{{Sn}}>{{Desc1}}</td>-->
+<td *ngIf={{ShowMac0}}>{{Sn}}>{{Mac0}}</td>
+<td *ngIf={{ShowMac1}}>{{Sn}}>{{Mac1}}</td>
+<td *ngIf={{ShowImei0}}>{{Sn}}>{{Imei0}}</td>
+<td *ngIf={{ShowImei1}}>{{Sn}}>{{Imei1}}</td>
+<td *ngIf={{ShowUuid0}}>{{Sn}}>{{Uuid0}}</td>
+<td *ngIf={{ShowUuid1}}>{{Sn}}>{{Uuid1}}</td>
+
 </tr>

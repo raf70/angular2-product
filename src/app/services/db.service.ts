@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import {IModuleSchema} from '../models/productSchema' 
+import {IModuleSchema, INameMap, ProductRowSchema} from '../models/productSchema' 
 import {IModule} from '../models/PikaModule' 
 
 ////////////////////////////////////////////////////////////
@@ -45,6 +45,13 @@ export class PikaModuleService {
         return module$;
     }
 
+    describe(name: string): Observable<string>{
+         let module$ = this._http.get(`${this._pikaModuleUrl}/description/${name}`,{headers: getHeaders()})
+        .map((response: Response) => <string> response.json().result)
+        .catch(handleError);
+        return module$;
+    }
+
     save(modules: IModule[]): Observable<number> {
         // console.log("to post: " + JSON.stringify(modules));
         return this._http.post(`${this._pikaModuleUrl}/device`,JSON.stringify(modules),{headers: getHeaders()})
@@ -68,17 +75,22 @@ export class ProductMetadataService {
     constructor(private _http: Http) {}
 
     // this returns names to populate product drop down menu on Add Product page
-    getProductNames(): Observable<String[]> {
+    getProductNames(): Observable<INameMap[]> {
         let modules$ = this._http.get(`${this._pikaModuleUrl}/productNames`,{headers: getHeaders()})
-        .map((response: Response) => <String[]> response.json().result)
+        .map((response: Response) => <INameMap[]> response.json().result)
         .catch(handleError);
         return modules$;
     }
     // returns list of modules and fields to be populated for product names
-    getProductStructure(name: string): Observable<IModuleSchema[]>{
-         let modules$ = this._http.get(`${this._pikaModuleUrl}/productStructure/${name}`,{headers: getHeaders()})
-        .map((response: Response) => <IModuleSchema[]> response.json().result)
-        .do(data => console.log('productStructure: ' + JSON.stringify(data)))
+    // service returns distinct list, duplicates must be created here
+    getProductStructure(nameList: string): Observable<ProductRowSchema[]>{
+        var URIencodedNameList = encodeURI(nameList)
+         let modules$ = this._http.get(`${this._pikaModuleUrl}/productStructure/${URIencodedNameList}`,{headers: getHeaders()})
+        .map((response: Response) => <ProductRowSchema[]> response.json().result)
+        .do(data => { 
+            console.log('requested list: ' + nameList)
+            console.log('productStructure: ' + JSON.stringify(data))
+        })
         .catch(handleError);
         return modules$;
     }
@@ -106,7 +118,7 @@ export class ProductMetadataService {
 
 ////////////////////////////////////////////////////////////
 ///                                                      ///  
-///                   helper funcitons                   ///
+///                   helper functions                   ///
 ///                                                      ///  
 ////////////////////////////////////////////////////////////
 

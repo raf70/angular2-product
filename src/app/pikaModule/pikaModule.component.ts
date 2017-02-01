@@ -1,14 +1,15 @@
 import {Component, Input, Output, EventEmitter}from '@angular/core';
-import {IModule} from '../models/PikaModule'
+import {IModule,} from '../models/PikaModule';
+import {ProductRowSchema} from '../models/productSchema';
 
 @Component ({
     selector: 'pm-module',
     templateUrl: 'PikaModule.component.html'
 })
 export class PikaModuleComponent{
-    @Input() module: IModule;
-    @Output() notify: EventEmitter<IModule> = 
-            new EventEmitter<IModule>(); 
+    @Input() product: ProductRowSchema;
+    @Output() notify: EventEmitter<ProductRowSchema> = 
+            new EventEmitter<ProductRowSchema>(); 
     
     ngOnChanges(): void {
         // not sure if we need this...
