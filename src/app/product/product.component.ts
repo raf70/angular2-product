@@ -67,16 +67,19 @@ export class ProductComponent {
             )
     }
 }
+
  function setupRows(data: ProductRowSchema[], list: string ): ProductRowSchema[] 
  {
      let newData: ProductRowSchema[] = new Array();
      var nameArray = list.split(',');
+     let index = 0;
 
      for (let i of nameArray) {
          for (let j of data) {
              if(i.indexOf(j.ItemNo.trim())>=0) {
-                newData.push(JSON.parse(JSON.stringify(j))) // cloning                 
-                console.log('Match found')
+                j.Index = index; 
+                index ++;
+                newData.push(JSON.parse(JSON.stringify(j))); // cloning                 
                 break;
              }
          }

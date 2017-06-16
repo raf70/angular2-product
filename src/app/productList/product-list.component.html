@@ -3,32 +3,56 @@
         <h3> {{title}}</h3>
     </div>
     <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-4'>
+                Search all fields:
+                <input type="text" [(ngModel)]='listFilter' />
+            </div>
+        </div>
         <div class='table-responsive'>
-            <table class='table' *ngIf='modules && modules.length'>
+            <table class='table table-striped table-bordered' *ngIf='modules && modules.length'>
                 <thead>
                     <tr>
-                        <th>PN</th>
+                        <th>
+                            <button class='btn btn-link' (click)="sortListClick('byPn')"> 
+                                Item No
+                                <span class='{{sortByPnOrder}}'></span>
+                            </button>
+                        </th>
                         <th>SN</th>
-                        <th>Desc</th>
-                        <th>MAC0</th>
-                        <th>MAC1</th>
-                        <th>IMEI0</th>
-                        <th>IMEI1</th>
+                        <!--   <th>Desc</th>  -->
+                        <th>MAC/IMEI 0</th>
+                        <th>MAC/IMEI 1</th>
+                        <th>MAC/IMEI 2</th>
+                        <th>MAC/IMEI 3</th>
+                        <th>MAC/IMEI 4</th>
+                        <th>UUID0</th>
+                        <th>License</th>
                         <th>Parent</th>
-                        <th>isParent</th>
+                        <th>
+                            <button class='btn btn-link' (click)="sortListClick('byDate')">                                
+                                Added on 
+                                <span class='{{sortByDateOrder}}'></span>
+                            </button>
+                        </th>
+                        <!--<th>isParent</th>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let m of modules'>
-                        <td>{{m.Sn}}</td>
+                    <tr *ngFor='let m of modules | productFilter:listFilter'>
                         <td>{{m.ItemNo}}</td>
-                        <td>{{m.Desc1}}</td>
-                        <td>{{m.Mac0}}</td>
-                        <td>{{m.Mac1}}</td>
-                        <td>{{m.Imei0}}</td>
-                        <td>{{m.Imei1}}</td>
-                        <td>{{m.ParentId}}</td>
-                        <td>{{m.IsParent}}</td>
+                        <td>{{m.Sn | uppercase}}</td>
+                        <!--<td>{{m.Desc1}}</td> -->
+                        <td>{{m.MacImei0}}</td>
+                        <td>{{m.MacImei1}}</td>
+                        <td>{{m.MacImei2}}</td>
+                        <td>{{m.MacImei3}}</td>
+                        <td>{{m.MacImei4}}</td>
+                        <td>{{m.Uuid0}}</td>
+                        <td>{{m.License}}</td>
+                        <td>{{m.ParentSn}}</td>
+                        <td>{{m.CreateDt | date: 'dd/MM/yyyy'}}</td>
+                        <!--<td>{{m.IsParent}}</td>-->
                     </tr>
                 </tbody>
 

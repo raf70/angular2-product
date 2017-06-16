@@ -1,11 +1,11 @@
-<div class="form-group has-error">
-    {{product.ItemNo}}
-    {{product.Desc1}}  
-    <input #sn="ngModel" id='Sn' requried type="text" class="form-control" [(ngModel)]='product.Sn' placeholder="Serial Number" name="Sn">
-    <input #mac0="ngModel" id='Mac0' type="text" [(ngModel)]='product.Mac0' placeholder="MAC 0" name="Mac0" *ngIf="product.ShowMac0">
-    <input #mac1="ngModel" id='Mac1' type="text" [(ngModel)]='product.Mac1' placeholder="MAC 1" name="Mac1" *ngIf="product.ShowMac0">
-    <input #imei0="ngModel" id='Imei0' type="text" [(ngModel)]='product.Imei0' placeholder="IMEI 0" name="Imei0" *ngIf="product.ShowImei0">
-    <input #imei1="ngModel" id='Imei1' type="text" [(ngModel)]='product.Imei1' placeholder="IMEI 1" name="Imei1" *ngIf="product.ShowImei1">
-    <input #uuid0="ngModel" id='Uuid0' type="text" [(ngModel)]='product.Uuid0' placeholder="UUID 0" name="Uuid0" *ngIf="product.ShowUuid0">
-    <input #uuid1="ngModel" id='Uuid1' type="text" [(ngModel)]='product.Uuid1' placeholder="UUID 1" name="Uuid1" *ngIf="product.ShowUuid1">
+<div class="form-group row">
+    <div class="col-md-1">{{product.ItemNo}}</div>
+    <div class="col-md-1">{{sn.invalid}}</div>
+    <div class="col-md-1" [class.has-error]="sn.invalid" ><input #sn="ngModel" requried type="text" class="form-control" [(ngModel)]='product.Sn' placeholder="Serial Number" name="sn"></div>
+    <div class="col-md-1"  *ngIf="product.ShowMac0"><input #mac0="ngModel" type="text" class="form-control" [(ngModel)]='product.Mac0' placeholder="MAC 0" name="Mac0"></div>
+    <div class="col-md-1" *ngIf="product.ShowMac0"><input #mac1="ngModel" type="text" class="form-control" [(ngModel)]='product.Mac1' placeholder="MAC 1" name="Mac1"></div>
+    <div class="col-md-1" *ngIf="product.ShowImei0"><input #imei0="ngModel" type="text" class="form-control" [(ngModel)]='product.Imei0' placeholder="IMEI 0" name="Imei0"></div>
+    <div class="col-md-1" *ngIf="product.ShowImei1"><input #imei1="ngModel" type="text" class="form-control" [(ngModel)]='product.Imei1' placeholder="IMEI 1" name="Imei1"></div>
+    <div class="col-md-1" *ngIf="product.ShowUuid0"><input #uuid0="ngModel" type="text" class="form-control" [(ngModel)]='product.Uuid0' placeholder="UUID 0" name="Uuid0"></div>
+    <div class="col-md-1" *ngIf="product.ShowUuid1"><input #uuid1="ngModel" type="text" class="form-control" [(ngModel)]='product.Uuid1' placeholder="UUID 1" name="Uuid1"></div>
 </div>

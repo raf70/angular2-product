@@ -1,0 +1,57 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        <h1> {{title}}</h1>
+    </div>
+
+    <form [formGroup]="myForm" (ngSubmit)="save(myForm)" novalidate>
+        <!--<div class="form-group">
+             <div class="panel-body"><input type="text" class="form-control" formControlName="scannedItemNo" placeholder="Scan Product Label"></div>
+</div> -->
+        <div class="form-group">
+
+
+            <div class="panel-body">
+
+                <select id="selectProductName" class="form-control input bg-info" formControlName="selectProductName">
+                    <option value="" disabled selected>Select device to add...</option>
+                    <option *ngFor="let pName of productNames" [ngValue]="pName">
+                        {{pName.ProductName}}
+                    </option>
+                </select>
+            </div>
+
+            <div formArrayName="modules" *ngFor="let module of modules.controls; let i=index">
+                <div [formGroupName]="i">
+                    <div class="form-group row">
+
+                        <div class="col-md-1"><input type="text" class="form-control input-sm" formControlName="ItemNo"></div>
+                        <div class="col-md-1"><input type="text" class="form-control input-sm" formControlName="Scan" autofocus placeholder="Scan"></div>
+                        <div class="col-md-1"><input requried type="text" class="form-control input-sm" placeholder="Serial Number" formControlName="Sn"></div>
+                        <div class="col-md-1"><input id="{{'MacImei0' + i}}" type="text" class="form-control input-sm" placeholder="MAC/IMEI 0" formControlName="MacImei0"></div>
+                        <div class="col-md-1"><input id="{{'MacImei1' + i}}" type="text" class="form-control input-sm" placeholder="MAC/IMEI 1" formControlName="MacImei1"></div>
+                        <div class="col-md-1"><input id="{{'MacImei2' + i}}" type="text" class="form-control input-sm" placeholder="MAC/IMEI 2" formControlName="MacImei2"></div>
+                        <div class="col-md-1"><input id="{{'MacImei3' + i}}" type="text" class="form-control input-sm" placeholder="MAC/IMEI 3" formControlName="MacImei3"></div>
+                        <div class="col-md-1"><input id="{{'MacImei4' + i}}" type="text" class="form-control input-sm" placeholder="MAC 4" formControlName="MacImei4"></div>
+                        <div class="col-md-1"><input id="{{'Uuid0id' + i}}" type="text" class="form-control input-sm" placeholder="UUID 0" formControlName="Uuid0"></div>
+                        <div class="col-md-1"><input id="{{'License' + i}}" type="text" class="form-control input-sm" placeholder="License" formControlName="License"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-6">
+                    <button class="btn btn-default btn-lg right" type="button" (click)="reset()">Reset</button>
+                    <button class="btn btn-primary btn-lg active" type="button" (click)="save()">Save</button>
+                    <button class="btn btn-primary btn-lg active" type="button" (click)="saveAndNew()">Save & New</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--productDefinition: {{productDefinition | json}}
+<br>NextproductDefinition: {{nextProductDefinition | json}}
+
+<br> observed: {{observedModules | json}}
+<br>productRows: {{productRows | json}}
+-->

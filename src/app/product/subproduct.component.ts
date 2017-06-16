@@ -9,6 +9,7 @@ import {IModuleSchema, INameMap, ProductRowSchema} from '../models/productSchema
 })
 export class SubProductComponent {
   @Input()  product: ProductRowSchema;
+  @Input() index: string;
   @Output() event: EventEmitter<ProductRowSchema> =
                 new EventEmitter<ProductRowSchema>();
 

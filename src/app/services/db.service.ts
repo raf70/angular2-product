@@ -17,9 +17,11 @@ import {IModule} from '../models/PikaModule'
 
 @Injectable()
 export class PikaModuleService {
-   // private _pikaModuleUrl = 'http://grafana.pikatech.com:3001';
-    private _pikaModuleUrl = 'http://localhost:3001';
+   private _pikaModuleUrl = 'http://grafana.pikatech.com:3001';
+    //private _pikaModuleUrl = 'http://localhost:3001';
     constructor(private _http: Http) {}
+
+
 
     getAll(): Observable<IModule[]> {
         let modules$ = this._http.get(`${this._pikaModuleUrl}/devices`,{headers: getHeaders()})
@@ -53,10 +55,10 @@ export class PikaModuleService {
     }
 
     save(modules: IModule[]): Observable<number> {
-        // console.log("to post: " + JSON.stringify(modules));
+        console.log("POSTing to server: " + JSON.stringify(modules));
         return this._http.post(`${this._pikaModuleUrl}/device`,JSON.stringify(modules),{headers: getHeaders()})
         .map((response: Response) => <number> response.json().result)
-        .do(data => console.log('Save: ' + JSON.stringify(data)))
+        //.do(data => console.log('Save: ' + JSON.stringify(data)))
         .catch(handleError);        
     }
 }
@@ -70,8 +72,8 @@ export class PikaModuleService {
 
 @Injectable()
 export class ProductMetadataService {
-   // private _pikaModuleUrl = 'http://grafana.pikatech.com:3001';
-    private _pikaModuleUrl = 'http://localhost:3001';
+    private _pikaModuleUrl = 'http://grafana.pikatech.com:3001';
+    //private _pikaModuleUrl = 'http://localhost:3001';
     constructor(private _http: Http) {}
 
     // this returns names to populate product drop down menu on Add Product page
@@ -83,16 +85,16 @@ export class ProductMetadataService {
     }
     // returns list of modules and fields to be populated for product names
     // service returns distinct list, duplicates must be created here
-    getProductStructure(nameList: string): Observable<ProductRowSchema[]>{
+    getProductStructure(nameList: string): Observable<ProductRowSchema[]>{       
         var URIencodedNameList = encodeURI(nameList)
-         let modules$ = this._http.get(`${this._pikaModuleUrl}/productStructure/${URIencodedNameList}`,{headers: getHeaders()})
+        let modules$ = this._http.get(`${this._pikaModuleUrl}/productStructure/${URIencodedNameList}`,{headers: getHeaders()})
         .map((response: Response) => <ProductRowSchema[]> response.json().result)
         .do(data => { 
-            console.log('requested list: ' + nameList)
-            console.log('productStructure: ' + JSON.stringify(data))
+            // console.log('requested list: ' + nameList)
+            // console.log('productStructure: ' + JSON.stringify(data))
         })
         .catch(handleError);
-        return modules$;
+        return modules$ 
     }
 
     get(id: number): Observable<IModuleSchema>{

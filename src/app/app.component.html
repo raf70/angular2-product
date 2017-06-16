@@ -1,27 +1,39 @@
-
 <h3>
-  PIKA special Ops 
+    PIKA Operations {{ver}}
 </h3>
 <nav>
-	<a [routerLink]="['/']">
+
+    <ul class="nav nav-tabs">
+        <li><a [routerLink]="['/signup']">Sign Up</a></li>
+        <li><a [routerLink]="['/device']">Add Device</a></li>
+        <!--   <li><a [routerLink]="['/deviceScan']">Scan Device</a></li> -->
+        <li><a [routerLink]="['/productList']">Device List</a></li>
+
+    </ul>
+    <!--	<a [routerLink]="['/']">
     Home
   </a>
   |
 	<a [routerLink]="['/product']">
     Add Product
   </a>
-  |
-  <a [routerLink]="['/productList']">
+  | 
+  
+  	<a class="btn btn-default" [routerLink]="['/device']">
+    Add Device from List
+  </a>
+  
+  <a class="btn btn-default" [routerLink]="['/productList']">
     Product List
   </a>
-  |
 
 	<a [routerLink]="['/contact']">
     Contact Us
   </a>
+
+  -->
 </nav>
 
 <main>
-	<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </main>
-
